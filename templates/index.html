@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial;
+        padding: 20px;
+        background: #f1f1f1;
+      }
+      h2 {
+        color: #04aa6d;
+      }
+
+      .header {
+        padding: 2px;
+        font-size: 40px;
+        text-align: center;
+        background: white;
+      }
+
+      .leftcolumn {
+        float: left;
+        width: 100%;
+      }
+
+      .card {
+        background-color: white;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      .button {
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+
+      .button1 {
+        background-color: white;
+        color: black;
+        border: 2px solid #04aa6d;
+      }
+
+      @media screen and (max-width: 800px) {
+        .leftcolumn,
+        .rightcolumn {
+          width: 100%;
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h2>Dan's Blog</h2>
+    </div>
+
+    <div class="row">
+      <div class="leftcolumn">
+        <a href="post_create/"
+          ><button class="button button1">Create Post</button></a
+        >
+        {% for post in pos reversed %}
+        <div class="card">
+          <a
+            style="text-decoration: none; color: black"
+            href="/post/{{post.id}}"
+          >
+            <h2>{{post.title}}</h2>
+            <h5>{{post.created_at}}</h5>
+            <p>{{post.body|truncatewords:5}}</p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
